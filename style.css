@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    height: 100%;
+    min-width: 333px
+}
+body {
+    height: 100%;
+    padding:20px;
+    background-color: rgb(50, 50, 163);
+    background-image: linear-gradient( rgb(92, 188, 230), rgb(77, 238, 131));
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#frontFace {
+    background-color: rgba(10, 48, 48, 0.493);
+    width: 280px;
+    padding: 4px 5px 1px 5px;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+#display {
+    width: 98%;
+    height: 85px;
+    border: rgba(86, 166, 212, 0.418) 1px solid;
+    text-align: right;
+    padding-right: 10px;
+    margin: 5px auto;
+}
+#expression {
+    height: 30px;
+    vertical-align: middle;
+    position: relative;
+}
+#expressionText {
+    position: absolute;
+    top: 30%;
+    right: 0px;
+    color: rgba(245, 245, 245, 0.6)
+}
+#result {
+    height: 55px;
+    vertical-align: middle;
+    position: relative;
+}
+#resultText {
+    position: absolute;
+    top: 10%;
+    right: 0px;
+    color: rgba(245, 245, 245, 0.6);
+    font-size: 225%;
+}
+#keypad {
+    padding: 0px 0 5px 0;
+}
+.keyRow {
+    overflow: hidden;
+    padding: 3px 0 3px 0;
+}
+button {
+    float: left;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(10, 48, 48, 0.0);
+    border: rgba(86, 166, 212, 0.418) 1px solid;
+    color: rgba(245, 245, 245, 0.6);
+    margin: 0 3px;
+    border-radius: 4px;
+    font-style: bold;
+}
+button:hover {
+    background-color: rgba(58, 158, 158, 0.1);
+}
+button:active {
+    background-color: rgba(10, 48, 48, 0.2);
+    border: none;
+}
+button:focus {
+    outline-width: 0;
+}
+#num0 {
+    width: 102px;
+}
+#equals {
+    height: 102px;
+    position: absolute;
+}
+.memoryNotEmpty {
+    color: rgba(139, 10, 10, 0.5);
+}

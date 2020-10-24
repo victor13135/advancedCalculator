@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="frontFace">
+        <div id="display">
+            <div id="expression"> <div id="expressionText"> </div> </div>
+            <div id="result"> <div id="resultText"> 0 </div> </div>
+        </div>
+        <div id="keypad" class="grid-container">
+            <div class="keyRow">
+                <button id="memoryClear" class="memory">MC</button>
+                <button id="memoryRecall" class="memory">MR</button>
+                <button id="memoryStore" class="memory">MS</button>
+                <button id="memoryPlus" class="memory">M+</button>
+                <button id="memoryMinus" class="memory">M-</button>
+            </div>
+            <div class="keyRow">
+                <button id="backspace" class="special">&#8592</button>
+                <button id="clearEntry" class="special">CE</button>
+                <button id="clearAll" class="special">C</button>
+                <button id="plusMinus" class="special">+/-</button>
+                <button id="squareRoot" class="operation unary">&#8730</button>
+            </div>
+            <div class="keyRow">
+                <button id="num7" class="number" value="7">7</button>
+                <button id="num8" class="number" value="8">8</button>
+                <button id="num9" class="number" value="9">9</button>
+                <button id="divided-by" class="operation binary" value="/">/</button>
+                <button id="per-cent" class="" value="%">%</button>
+            </div>
+            <div class="keyRow">
+                <button id="num4" class="number" value="4">4</button>
+                <button id="num5" class="number" value="5">5</button>
+                <button id="num6" class="number" value="6">6</button>
+                <button id="multiplied-by" class="operation binary" value="*">*</button>
+                <button id="reciprocity" class="operation unary" value="?">1/x</button>
+            </div>
+            <div class="keyRow">
+                <button id="num1" class="number" value="1">1</button>
+                <button id="num2" class="number" value="2">2</button>
+                <button id="num3" class="number" value="3">3</button>
+                <button id="minus" class="operation binary" value="-">-</button>
+                <button id="equals">=</button>
+            </div>
+            <div class="keyRow" id="lastRow">
+                <button id="num0" class="number" value="0">0</button>
+                <button id="decimalPoint" class="number point" value=".">.</button>
+                <button id="plus" class="operation binary" value="+">+</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
