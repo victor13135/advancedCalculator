@@ -63,7 +63,6 @@ function printBinaryExpression (op1, op2, operation) {
         case "/": return `${op1} / ${op2} = `; break;
     }
 }
-
 keypad.addEventListener("click", (event) => {
     if(event.target.tagName == "BUTTON") {
         if (event.target.classList.contains("memory")) {
@@ -107,11 +106,23 @@ keypad.addEventListener("click", (event) => {
                         document.getElementById("memoryRecall").classList.add("memoryNotEmpty");
                         refreshExpressionDisplay();
                     }
-                    console.log(firstOperand);
-                    console.log(`u memoriji je vrednost ${memoryRegister}`);
                     break;
-                case "memoryPlus": console.log("M+"); break;
-                case "memoryMinus": console.log("M-"); break;
+                case "memoryPlus":
+                    if (result != 0) {
+                        memoryRegister += result;
+                        emptyMemory = false;
+                        document.getElementById("memoryClear").classList.add("memoryNotEmpty");
+                        document.getElementById("memoryRecall").classList.add("memoryNotEmpty");
+                    }
+                    break;
+                case "memoryMinus":
+                    if (result != 0) {
+                        memoryRegister -= result;
+                        emptyMemory = false;
+                        document.getElementById("memoryClear").classList.add("memoryNotEmpty");
+                        document.getElementById("memoryRecall").classList.add("memoryNotEmpty");
+                    }
+                    break;
             }
         } else if (event.target.classList.contains("special")) {
             if(event.target.id == "clearAll") {
@@ -121,18 +132,14 @@ keypad.addEventListener("click", (event) => {
             } else if (secondOperand != 0) {
                 switch(event.target.id) {
                     case "backspace":
-                        console.log(secondOperand, secondOperandTemp);
                         secondOperand = Math.trunc(secondOperand/10);
                         secondOperandTemp = String(secondOperand);
-                        console.log(expression);
                         if (secondOperand < 0) {
                             secondOperandTemp = "(" + secondOperandTemp + ")";
                         } else {
                             secondOperandTemp = String(secondOperand);
                         }
-                        console.log(secondOperand, secondOperandTemp);
                         expression = firstOperandTemp + operation + secondOperandTemp;
-                        console.log(expression);
                         result = calculateBinaryResult(firstOperand, secondOperand, operation);
                         refreshResultDisplay();
                         refreshExpressionDisplay(); break;
@@ -149,7 +156,6 @@ keypad.addEventListener("click", (event) => {
                         if(secondOperand < 0) {
                             secondOperandTemp = "(" + secondOperandTemp + ")";
                         }
-                        console.log(secondOperandTemp, secondOperand);
                         expression = firstOperandTemp + operation + secondOperandTemp;
                         result = calculateBinaryResult (firstOperand, secondOperand, operation);
                         refreshResultDisplay();
@@ -167,7 +173,6 @@ keypad.addEventListener("click", (event) => {
                     case "backspace":
                         firstOperand = Math.trunc(firstOperand/10);
                         firstOperandTemp = String(firstOperand);
-                        console.log(expression);
                         if (firstOperand < 0) {
                             firstOperandTemp = "(" + firstOperandTemp + ")";
                         }
@@ -189,54 +194,39 @@ keypad.addEventListener("click", (event) => {
                 firstOperandTemp += event.target.value;     // prvi operand - jedna cifra tipa string
                 firstOperand = Number(firstOperandTemp);
                 expression = firstOperandTemp;             // dodat prvi operand na string
-                console.log("expression 0");
             } else if (event.target.classList.contains("binary")) {
                 firstOperand = 0;
                 firstOperandTemp = "0";
                 operation = event.target.value;
                 expression += firstOperandTemp + operation;
-                console.log("expression 0, operation binary");
             } else if (event.target.classList.contains("unary")) {
                 result = calculateUnaryResult(0, event.target.id);
                 expression = printUnaryExpression(0, event.target.id);
-                console.log(result);
                 firstOperand = result;
                 firstOperandTemp = toString(result);
                 //expression=0;
-                console.log("expression 0, operation unary");
             }
             refreshExpressionDisplay();
-            console.log("poziv refresh sa 85");
             refreshResultDisplay();                                         // kraj bloka za prvo pritisnuto dugme!
         } else if (operation.length == 0) {
-            console.log("operation length je 0");
             if(event.target.classList.contains("number")) {
-                firstOperandTemp += event.target.value;     // prvi operand - jedna cifra tipa string
-                console.log(firstOperandTemp)
+                firstOperandTemp += event.target.value;
                 firstOperand = Number(firstOperandTemp);
-                console.log(firstOperand);
-                expression = firstOperandTemp;             // dodat prvi operand na string
-                console.log("operation 0 dodajemo cifru na prvioperand");
+                expression = firstOperandTemp;
                 refreshExpressionDisplay();
             } else if (event.target.classList.contains("operation")) {
                 if (event.target.classList.contains("unary")) {
                     operation = event.target.id;
-                    console.log("operacija 0 unarna krece")
-                    console.log(typeof firstOperand);
                     result = calculateUnaryResult(firstOperand, operation);
                     expression = printUnaryExpression(firstOperand, operation);
-                    console.log(`prvi operand je ${firstOperand} a njegov tip je ${typeof firstOperand}`);
-                    console.log(`operacija je ${operation}`);
-                    console.log(`rezultat je ${result}`);
                     refreshExpressionDisplay();
-                    console.log("poziv sa 107");
                     refreshResultDisplay();
                     
                 } else if (event.target.classList.contains("binary")) {
                     operation = event.target.value;
                     expression += operation;
                     refreshExpressionDisplay();
-                    console.log("poziv sa 112");
+
                 } 
             }            
         } else if (secondOperand == 0) {
@@ -251,7 +241,6 @@ keypad.addEventListener("click", (event) => {
                 } else if (event.target.classList.contains("binary")) {
                     operation = event.target.value;
                     expression = firstOperandTemp + operation;
-                    console.log("poziv sa 136");
                     refreshExpressionDisplay();
                     refreshExpressionDisplay();
                 }
@@ -264,7 +253,6 @@ keypad.addEventListener("click", (event) => {
                 refreshResultDisplay();
             }
         } else if (secondOperandTemp.length > 0) {
-            console.log("druga cifra drugog operanda");
             if(event.target.classList.contains("number")) {
                 if(secondOperand > 0) {
                     secondOperandTemp += event.target.value;
@@ -282,7 +270,6 @@ keypad.addEventListener("click", (event) => {
                 refreshResultDisplay();
             } else if (event.target.id == "equals") {
                 result = calculateBinaryResult(firstOperand, secondOperand, operation);
-                // expression += "=";
                 refreshExpressionDisplay();
                 refreshResultDisplay();
                 firstOperand = result;
@@ -291,4 +278,3 @@ keypad.addEventListener("click", (event) => {
         }
     }
 });
-
