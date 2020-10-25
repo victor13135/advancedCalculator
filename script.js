@@ -109,18 +109,20 @@ keypad.addEventListener("click", (event) => {
                     break;
                 case "memoryPlus":
                     if (result != 0) {
-                        memoryRegister += result;
+                        memoryRegister += Number(result);
                         emptyMemory = false;
                         document.getElementById("memoryClear").classList.add("memoryNotEmpty");
                         document.getElementById("memoryRecall").classList.add("memoryNotEmpty");
+                        console.log(memoryRegister);
                     }
                     break;
                 case "memoryMinus":
                     if (result != 0) {
-                        memoryRegister -= result;
+                        memoryRegister -= Number(result);
                         emptyMemory = false;
                         document.getElementById("memoryClear").classList.add("memoryNotEmpty");
                         document.getElementById("memoryRecall").classList.add("memoryNotEmpty");
+                        console.log(memoryRegister);
                     }
                     break;
             }
